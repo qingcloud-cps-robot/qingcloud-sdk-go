@@ -96,18 +96,18 @@ type DeleteAccessKeysOutput struct {
 	RetCode    *int      `json:"ret_code" name:"ret_code" location:"elements"`
 }
 
-func (s *AccesskeyService) DescribeAccessKeys(i *DescribeAccessKeysInput) (*DescribeAccessKeysOutput, error) {
+func (s *AccesskeyService) DescribeAccessKey(i *DescribeAccessKeyInput) (*DescribeAccessKeyOutput, error) {
 	if i == nil {
-		i = &DescribeAccessKeysInput{}
+		i = &DescribeAccessKeyInput{}
 	}
 	o := &data.Operation{
 		Config:        s.Config,
 		Properties:    s.Properties,
-		APIName:       "DescribeAccessKeys",
+		APIName:       "DescribeAccessKey",
 		RequestMethod: "GET",
 	}
 
-	x := &DescribeAccessKeysOutput{}
+	x := &DescribeAccessKeyOutput{}
 	r, err := request.New(o, i, x)
 	if err != nil {
 		return nil, err
@@ -121,7 +121,7 @@ func (s *AccesskeyService) DescribeAccessKeys(i *DescribeAccessKeysInput) (*Desc
 	return x, err
 }
 
-type DescribeAccessKeysInput struct {
+type DescribeAccessKeyInput struct {
 	AccessKeys []*string `json:"access_keys" name:"access_keys" location:"params"`
 	Limit      *int      `json:"limit" name:"limit" default:"20" location:"params"`
 	Offset     *int      `json:"offset" name:"offset" default:"0" location:"params"`
@@ -131,12 +131,12 @@ type DescribeAccessKeysInput struct {
 	Verbose    *int      `json:"verbose" name:"verbose" default:"0" location:"params"`
 }
 
-func (v *DescribeAccessKeysInput) Validate() error {
+func (v *DescribeAccessKeyInput) Validate() error {
 
 	return nil
 }
 
-type DescribeAccessKeysOutput struct {
+type DescribeAccessKeyOutput struct {
 	Message      *string      `json:"message" name:"message"`
 	AccessKeySet []*AccessKey `json:"access_key_set" name:"access_key_set" location:"elements"`
 	Action       *string      `json:"action" name:"action" location:"elements"`
